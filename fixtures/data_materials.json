@@ -1,0 +1,60 @@
+[
+  {
+    "model": "materials.course",
+    "pk": 1,
+    "fields": {
+      "name": "django",
+      "preview": "",
+      "description": ""
+    }
+  },
+  {
+    "model": "materials.course",
+    "pk": 2,
+    "fields": {
+      "name": "fast-api",
+      "preview": "",
+      "description": ""
+    }
+  },
+  {
+    "model": "materials.course",
+    "pk": 4,
+    "fields": {
+      "name": "python",
+      "preview": "",
+      "description": ""
+    }
+  },
+  {
+    "model": "materials.course",
+    "pk": 6,
+    "fields": {
+      "name": "flask",
+      "preview": "",
+      "description": ""
+    }
+  },
+  {
+    "model": "materials.lesson",
+    "pk": 1,
+    "fields": {
+      "course": 1,
+      "name": "bd",
+      "preview": "",
+      "description": "",
+      "video": ""
+    }
+  },
+  {
+    "model": "materials.lesson",
+    "pk": 3,
+    "fields": {
+      "course": 2,
+      "name": "c++",
+      "preview": "",
+      "description": "",
+      "video": ""
+    }
+  }
+]
