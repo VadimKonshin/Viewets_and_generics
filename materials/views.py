@@ -9,6 +9,7 @@ from materials.models import Course, Lesson, Subscription
 from materials.paginators import LessonPagination, CoursePagination
 from materials.serializer import CourseSerializer, LessonSerializer, CourseDetailSerializer
 from users.permissions import IsModer, IsOwner
+from materials.tasks import update_notification
 
 
 class CourseViewSet(ModelViewSet):
@@ -31,6 +32,16 @@ class CourseViewSet(ModelViewSet):
             self.permission_classes = (IsOwner | ~IsModer,)
         return super.get_permissions()
 
+    def perform_create(self, serializer):
+        course = serializer.save()
+        course.owner = self.request.user
+        course.save()
+
+    def perform_update(self, serializer):
+        instance = serializer.save()
+        update_notification.delay(instance.pk)
+        return instance
+
 
 class CourseCreateAPIView(CreateAPIView):
     queryset = Course.objects.all()
@@ -44,6 +55,7 @@ class CourseCreateAPIView(CreateAPIView):
 
 
 class LessonCreateAPIView(CreateAPIView):
+    queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = (~IsModer, IsAuthenticated)
 
