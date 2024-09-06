@@ -19,6 +19,7 @@ drf-yasg = "^1.21.7"
 stripe = "^10.8.0"
 celery = "^5.4.0"
 redis = "^5.0.8"
+setuptools = "^74.1.2"
 
 
 [build-system]
